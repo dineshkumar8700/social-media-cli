@@ -1,9 +1,10 @@
 import { select, Separator } from "@inquirer/prompts";
-import { createPost, viewPosts } from "../app/dashboard.js";
+import { viewPosts } from "../db/memory/posts.js";
+import { handleCreatePost } from "./create_post.js";
 
 const options = [
   { name: "View Posts", value: viewPosts },
-  { name: "Create Post", value: createPost },
+  { name: "Create Post", value: handleCreatePost },
   { name: "Edit Account", value: "editAccount" },
   { name: "Search Friend", value: "searchFriend" },
   { name: "Settigs", value: "settigs" },

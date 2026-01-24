@@ -44,7 +44,7 @@
 - In memory JSON version of database will be used in the beginning
 - After implementing **Version 1**, will shift to sqlite
 
-## Versio 2
+## Version 2
 
 ### After login to the app, user can do following thing
 

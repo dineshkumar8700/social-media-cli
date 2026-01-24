@@ -1,4 +1,4 @@
-import { addUserToDB, validateUser } from "../db/db.js";
+import { addUserToDB, validateUser } from "../db/memory/validation.js";
 import { handleLogin, handleSignup } from "../ui/login_signup.js";
 
 export const signup = async () => {
