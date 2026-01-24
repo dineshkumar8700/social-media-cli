@@ -13,11 +13,12 @@ export const login = async () => {
   console.log("Login into your account\n");
 
   const user = await handleLogin();
+  const loginStatus = validateUser(user);
 
-  if (validateUser(user)) {
+  if (!loginStatus.hasError) {
     return user;
   } else {
-    console.log("Wrong username or password. Try again\n");
+    console.log(`${loginStatus.message}\n`);
     return login();
   }
 };
