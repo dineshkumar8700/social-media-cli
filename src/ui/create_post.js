@@ -1,6 +1,5 @@
 import { input } from "@inquirer/prompts";
 import { createPost } from "../db/memory/posts.js";
-import { memoryDB } from "../../db/in_memory.js";
 
 const validatePostInfo = (text, name, length) => {
   if (!text.trim()) return `${name} cannot be empty`;
@@ -11,8 +10,6 @@ const validatePostInfo = (text, name, length) => {
 };
 
 export const handleCreatePost = async (db, user) => {
-  console.log({ user });
-
   const title = (await input({
     message: "Enter post title",
     validate(title) {
@@ -33,5 +30,5 @@ export const handleCreatePost = async (db, user) => {
 
   const tags = rawTags ? [...new Set(rawTags.split(/\s+/))] : [];
 
-  return createPost(db, user.username, title, description, tags);
+  return createPost(db, user.id, title, description, tags);
 };

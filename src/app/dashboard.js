@@ -1,7 +1,6 @@
 import { dashboardOptions } from "../ui/dashboard.js";
-import { memoryDB } from "../../db/in_memory.js";
 
-export const showDashboard = async (user) => {
+export const showDashboard = async (DB, user) => {
   console.clear();
   console.log(`Welcome back ${user.username}\n`);
 
@@ -10,7 +9,7 @@ export const showDashboard = async (user) => {
     if (choice === "logout") return;
 
     console.clear();
-    const result = await choice(memoryDB, user);
+    const result = await choice(DB, user);
 
     if (result) {
       console.table(result);

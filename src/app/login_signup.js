@@ -16,7 +16,7 @@ export const login = async () => {
   const loginStatus = validateUser(user);
 
   if (!loginStatus.hasError) {
-    return user;
+    return loginStatus.user;
   } else {
     console.log(`${loginStatus.message}\n`);
     return login();
