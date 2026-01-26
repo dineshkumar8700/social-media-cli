@@ -1,5 +1,5 @@
 import { input, select } from "@inquirer/prompts";
-import { login, signup } from "../app/login_signup.js";
+import { login, signup } from "../../app/login_signup.js";
 
 export const handleSignup = async () => {
   const username = await input({

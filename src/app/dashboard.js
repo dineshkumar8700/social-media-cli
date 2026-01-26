@@ -1,4 +1,4 @@
-import { dashboardOptions } from "../ui/dashboard.js";
+import { dashboardOptions } from "../ui/menus/dashboard.js";
 
 export const showDashboard = async (DB, user) => {
   console.clear();

@@ -42,7 +42,15 @@
 ## Database
 
 - In memory JSON version of database will be used in the beginning
-- After implementing **Version 1**, will shift to sqlite
+
+```js
+export const memoryDB = {
+  users: [],
+  posts: [],
+  currentUserId: 1,
+  currentPostId: 1,
+};
+```
 
 ## Version 2
 

@@ -1,5 +1,5 @@
 import { addUserToDB, validateUser } from "../db/memory/validation.js";
-import { handleLogin, handleSignup } from "../ui/login_signup.js";
+import { handleLogin, handleSignup } from "../ui/promts/login_signup.js";
 
 export const signup = async () => {
   console.log("Create new account\n");

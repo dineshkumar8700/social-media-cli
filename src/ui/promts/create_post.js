@@ -1,5 +1,5 @@
 import { input } from "@inquirer/prompts";
-import { createPost } from "../db/memory/posts.js";
+import { createPost } from "../../db/memory/posts.js";
 
 const validatePostInfo = (text, name, length) => {
   if (!text.trim()) return `${name} cannot be empty`;
