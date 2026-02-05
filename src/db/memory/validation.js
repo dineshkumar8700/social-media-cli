@@ -1,11 +1,6 @@
 import { memoryDB as DB } from "../../../db/in_memory.js";
 
-export const addUserToDB = (user) => {
-  const id = DB.currentUserId++;
-  DB.users.push({ id, ...user });
-};
-
-export const validateUser = ({ username, password }) => {
+export const validateExistingUser = ({ username, password }) => {
   const index = DB.users.findIndex((user) => user.username === username);
 
   if (index === -1) {
@@ -17,4 +12,18 @@ export const validateUser = ({ username, password }) => {
   }
 
   return { hasError: false, message: "success", user: DB.users[index] };
+};
+
+export const validateNewUser = ({ username, password }) => {
+  const index = DB.users.findIndex((user) => user.username === username);
+
+  if (index !== -1) {
+    return { hasError: true, message: "Username already taken." };
+  }
+
+  if (password.length < 8) {
+    return { hasError: true, message: "Password must be 8 digits" };
+  }
+
+  return { hasError: false, message: "success" };
 };

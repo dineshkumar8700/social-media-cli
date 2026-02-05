@@ -30,7 +30,6 @@ Rules:
 - [x] add testing/bdd
 - [x] setup .gitignore
 - [x] install inquirer prompts
-- [ ] add env config file
 - [ ] add seed script for dummy data
 
 ---
@@ -47,13 +46,13 @@ Rules:
 
 ---
 
-# 🚀 Version 1 — Authentication + Basic Flow
+# 🚀 ✅ Version 1 — Authentication + Basic Flow
 
 ## Goal
 
 User can enter app and reach dashboard.
 
-## Features
+## ✅ Features
 
 - [x] Program boot entry (main.js)
 - [x] Authentication menu (login/signup)
@@ -63,12 +62,12 @@ User can enter app and reach dashboard.
 - [x] Session state stored in memory
 - [x] Show dummy posts after login
 
-## Validation Rules
+## ✅ Validation Rules
 
-- [ ] username must be unique
-- [ ] password min length rule
-- [ ] reject empty input
-- [ ] handle wrong password
+- [x] username must be unique
+- [x] password min length rule
+- [x] reject empty input
+- [x] handle wrong password
 
 ---
 
@@ -88,9 +87,7 @@ Tasks:
 - [x] create user insert function
 - [x] create user lookup function
 - [x] create post insert function
-- [ ] add find by id helpers
-- [ ] add update helpers
-- [ ] add delete helpers
+- [x] add update info function
 
 ---
 
