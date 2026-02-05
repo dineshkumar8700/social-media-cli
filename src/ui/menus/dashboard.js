@@ -7,8 +7,8 @@ const options = [
   { name: "View Posts", value: viewPosts },
   { name: "Create Post", value: handleCreatePost },
   { name: "Edit Account", value: editAccountCategory },
-  { name: "Search Friend", value: "searchFriend" },
-  { name: "Settigs", value: "settigs" },
+  { name: "Search Friend", value: "searchFriend", disabled: true },
+  { name: "Settigs", value: "settigs", disabled: true },
   new Separator(),
   { name: "Logout", value: "logout" },
 ];

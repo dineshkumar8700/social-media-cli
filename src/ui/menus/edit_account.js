@@ -1,24 +1,29 @@
 import { select, Separator } from "@inquirer/prompts";
-import { handleAddBio, handleEditName } from "../promts/setting.js";
+import * as handler from "../promts/setting.js";
 
 const personDetails = [
-  { name: "Name", value: handleEditName },
-  { name: "Add Bio", value: handleAddBio },
-  { name: "DOB", value: "dob" },
-  { name: "Gender", value: "gender" },
-  { name: "Interests", value: "interest" },
+  { name: "Name", value: handler.handleEditName },
+  { name: "Add Bio", value: handler.handleAddBio },
+  { name: "DOB", value: "dob", disabled: true },
+  { name: "Gender", value: handler.handleEditGender },
+  { name: "Interests", value: "interest", disabled: true },
   new Separator(),
   { name: "Back ↩", value: "back" },
 ];
 
 export const editPersonalDetails = async (db, user) => {
-  const choice = await select({
-    message: "Choose information to edit\n",
-    choices: personDetails,
-    pageSize: 10,
-  });
+  while (true) {
+    const choice = await select({
+      message: "Choose information to edit\n",
+      choices: personDetails,
+      pageSize: 10,
+    });
 
-  return choice(db, user.id);
+    if (choice === "back") return editAccountCategory();
+
+    const result = await choice(db, user.id);
+    console.log(result);
+  }
 };
 
 export const editUsernameAndPassword = async (db, user) => {
@@ -40,11 +45,16 @@ export const editAccountCategory = async (db, user) => {
     message: "What you want to edit\n",
     choices: [
       { name: "Personal Details", value: editPersonalDetails },
-      { name: "Password & Security", value: editUsernameAndPassword },
+      {
+        name: "Password & Security",
+        value: editUsernameAndPassword,
+        disabled: true,
+      },
       new Separator(),
       { name: "Back ↩", value: "back" },
     ],
   });
 
+  if (choice === "back") return;
   return choice(db, user);
 };

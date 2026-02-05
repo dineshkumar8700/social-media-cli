@@ -2,14 +2,25 @@ export const editName = (db, userId, newName) => {
   const index = db.users.findIndex((user) => user.id = userId);
 
   db.users[index].name = newName;
-  console.log("✅ Name changed successfully");
   console.log(db.users);
+
+  return "✅ Name changed successfully";
 };
 
 export const addBio = (db, userId, bio) => {
   const index = db.users.findIndex((user) => user.id = userId);
 
   db.users[index].bio = bio;
-  console.log("✅ Bio Added changed successfully");
   console.log(db.users);
+
+  return "✅ Bio Added changed successfully";
+};
+
+export const editGender = (db, userId, gender) => {
+  const index = db.users.findIndex((user) => user.id = userId);
+
+  db.users[index].gender = gender;
+  console.log(db.users);
+
+  return "✅ Gender changed successfully";
 };
