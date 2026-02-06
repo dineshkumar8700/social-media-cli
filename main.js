@@ -6,13 +6,13 @@ const main = async () => {
   console.clear();
   console.log("Welcome to CLI Social Media App\n");
 
-  const authenticationChoice = await authentication();
-  if (authenticationChoice === "exit") return;
+  // const authenticationChoice = await authentication();
+  // if (authenticationChoice === "exit") return;
 
-  const user = await authenticationChoice();
-  dashboard(memoryDB, user);
+  // const user = await authenticationChoice();
+  // dashboard(memoryDB, user);
 
-  // dashboard(memoryDB, { id: 1, username: "a", password: "a" });
+  dashboard(memoryDB, { id: 1, username: "a", password: "a" });
 };
 
 main();
