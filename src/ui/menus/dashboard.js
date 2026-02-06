@@ -5,9 +5,8 @@ import { handleCreatePost } from "../promts/create_post.js";
 const options = [
   { name: "View Posts", value: viewPosts },
   { name: "Create Post", value: handleCreatePost },
-  { name: "My Account", value: "settigs", disabled: true },
-  { name: "Find Friend", value: "settigs", disabled: true },
-  { name: "Settigs", value: "settigs", disabled: true },
+  { name: "My Profile", value: "userProfile" },
+  { name: "Find Friend", value: "findFriend", disabled: true },
   new Separator(),
   { name: "Logout", value: "logout" },
 ];

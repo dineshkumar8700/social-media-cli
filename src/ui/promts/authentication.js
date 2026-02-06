@@ -2,21 +2,38 @@ import { input, select, Separator } from "@inquirer/prompts";
 import * as validation from "../../db/memory/validation.js";
 import { addUserToDB, getUserId } from "../../db/memory/manage_users.js";
 
+const getUsername = async (message, validator) => {
+  const username = await input({
+    message,
+    required: true,
+    validate: (username) => validator(username),
+  });
+
+  return username;
+};
+
+const getPassword = async (message, validator) => {
+  const password = await input({
+    message,
+    required: true,
+    validate: (password) => validator(password),
+  });
+
+  return password;
+};
+
 export const handleSignup = async () => {
   console.clear();
   console.log("You are just one step away from using our app 😃\n");
 
-  const username = await input({
-    message: "Choose username:",
-    required: true,
-    validate: (username) => validation.isUsernameUnique(username),
-  });
-
-  const password = await input({
-    message: "Choose password:",
-    required: true,
-    validate: (password) => validation.validatePassword(password),
-  });
+  const username = await getUsername(
+    "Choose username:",
+    validation.isUsernameUnique,
+  );
+  const password = await getPassword(
+    "Choose password",
+    validation.validatePassword,
+  );
 
   const id = addUserToDB({ username, password });
   return { id, username, password };
@@ -26,11 +43,10 @@ export const handleLogin = async () => {
   console.clear();
   console.log("Glad to see you back 👋 Login and start using app 😃\n");
 
-  const username = await input({
-    message: "Enter username:",
-    required: true,
-    validate: (username) => validation.isUsernameExists(username),
-  });
+  const username = await getUsername(
+    "Enter username:",
+    validation.isUsernameExists,
+  );
 
   const password = await input({
     message: "Enter password:",
