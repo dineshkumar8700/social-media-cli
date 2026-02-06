@@ -9,26 +9,40 @@ const validatePostInfo = (text, name, length) => {
   }
 };
 
-export const handleCreatePost = async (db, user) => {
+const getPostTitle = async () => {
   const title = (await input({
-    message: "Enter post title",
-    validate(title) {
-      return validatePostInfo(title, "title", 3) || true;
-    },
+    message: "Enter post title:",
+    validate: (title) => validatePostInfo(title, "title", 3) || true,
   })).trim();
 
+  return title;
+};
+
+const getPostDescription = async () => {
   const description = (await input({
-    message: "Enter post description",
-    validate(description) {
-      return validatePostInfo(description, "description", 10) || true;
-    },
+    message: "Enter post title:",
+    validate: (desc) => validatePostInfo(desc, "description", 10) || true,
   })).trim();
 
+  return description;
+};
+
+const getTags = async () => {
   const rawTags = (await input({
-    message: "Enter tags (space separated, optional)",
+    message: "Enter tags (space separated, optional):",
   })).trim();
 
   const tags = rawTags ? [...new Set(rawTags.split(/\s+/))] : [];
 
-  return createPost(db, user.id, title, description, tags);
+  return tags;
+};
+
+export const handleCreatePost = async (db, user) => {
+  const title = await getPostTitle();
+  const description = await getPostDescription();
+  const tags = await getTags();
+
+  const post = { createdBy: user.id, title, description, tags };
+
+  return createPost(db, post);
 };

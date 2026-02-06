@@ -1,8 +1,12 @@
 import { dashboardOptions } from "../ui/menus/dashboard.js";
 
-export const showDashboard = async (DB, user) => {
+const showWelcomeMsg = (username) => {
   console.clear();
-  console.log(`Welcome back ${user.username}\n`);
+  console.log(`👋 Welcome back ${username}`);
+};
+
+export const dashboard = async (DB, user) => {
+  showWelcomeMsg(user.username);
 
   while (true) {
     const choice = await dashboardOptions();

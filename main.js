@@ -1,4 +1,4 @@
-import { showDashboard } from "./src/app/dashboard.js";
+import { dashboard } from "./src/app/dashboard.js";
 import { authentication } from "./src/ui/promts/authentication.js";
 import { memoryDB } from "./db/in_memory.js";
 
@@ -10,9 +10,9 @@ const main = async () => {
   if (authenticationChoice === "exit") return;
 
   const user = await authenticationChoice();
-  showDashboard(memoryDB, user);
+  dashboard(memoryDB, user);
 
-  // showDashboard(memoryDB, { id: 1, username: "a", password: "a" });
+  // dashboard(memoryDB, { id: 1, username: "a", password: "a" });
 };
 
 main();

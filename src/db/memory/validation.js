@@ -1,29 +1,25 @@
 import { memoryDB as DB } from "../../../db/in_memory.js";
 
-export const validateExistingUser = ({ username, password }) => {
+export const isUsernameExists = (username) => {
   const index = DB.users.findIndex((user) => user.username === username);
 
-  if (index === -1) {
-    return { hasError: true, message: "no such username found" };
-  }
-
-  if (DB.users[index].password !== password) {
-    return { hasError: true, message: "wrong password. Try again" };
-  }
-
-  return { hasError: false, message: "success", user: DB.users[index] };
+  return index !== -1 ? true : "no such username found";
 };
 
-export const validateNewUser = ({ username, password }) => {
+export const isPasswordCorrect = (username, pass) => {
   const index = DB.users.findIndex((user) => user.username === username);
 
-  if (index !== -1) {
-    return { hasError: true, message: "Username already taken." };
-  }
+  return DB.users[index].password === pass ? true : "wrong password.";
+};
 
-  if (password.length < 8) {
-    return { hasError: true, message: "Password must be 8 digits" };
-  }
+export const isUsernameUnique = (username) => {
+  const index = DB.users.findIndex((user) => user.username === username);
 
-  return { hasError: false, message: "success" };
+  return index === -1 ? true : "Username already taken.";
+};
+
+export const validatePassword = (password) => {
+  const length = password.length;
+
+  return length >= 8 ? true : "Password length must be 8 digits";
 };

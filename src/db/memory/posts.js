@@ -22,10 +22,10 @@ export const viewPosts = (db) => {
   });
 };
 
-export const createPost = (db, createdBy, title, description, tags) => {
+export const createPost = (db, post) => {
   const id = db.currentPostId++;
-  const post = { id, createdBy, title, description, tags };
 
-  db.posts.push(post);
+  db.posts.push({ id, ...post });
+
   console.log(`✅ ${post.title} posted successfully`);
 };
