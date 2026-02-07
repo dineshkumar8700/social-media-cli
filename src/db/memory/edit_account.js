@@ -13,7 +13,7 @@ export const addBio = (db, userId, bio) => {
   db.users[index].bio = bio;
   console.log(db.users);
 
-  return "✅ Bio Added changed successfully";
+  return "✅ Bio changed successfully";
 };
 
 export const editGender = (db, userId, gender) => {
@@ -23,4 +23,13 @@ export const editGender = (db, userId, gender) => {
   console.log(db.users);
 
   return "✅ Gender changed successfully";
+};
+
+export const editDOB = (db, userId, dob) => {
+  const index = db.users.findIndex((user) => user.id = userId);
+
+  db.users[index].dob = dob;
+  console.log(db.users);
+
+  return "✅ DOB changed successfully";
 };

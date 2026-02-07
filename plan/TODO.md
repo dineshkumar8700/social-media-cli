@@ -102,6 +102,16 @@ User can create and manage content.
 - [x] view all posts
 - [x] create post
 - [x] edit account (username/password)
+  ### General Info
+  - [x] Name
+  - [x] Gender
+  - [x] Bio
+  - [x] DOB
+  - [ ] Interests
+
+  ### Username & Password
+  - [ ] Username
+  - [ ] Password
 - [x] logout
 
 ## Missing (Must Complete)

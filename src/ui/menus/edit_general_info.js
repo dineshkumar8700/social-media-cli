@@ -1,12 +1,13 @@
 import { select, Separator } from "@inquirer/prompts";
 import * as handler from "../promts/settings.js";
+import { showInterests } from "./interests.js";
 
 const personDetails = [
   { name: "Name", value: handler.handleEditName },
   { name: "Add Bio", value: handler.handleAddBio },
-  { name: "DOB", value: "dob", disabled: true },
+  { name: "DOB", value: handler.handleEditDOB },
   { name: "Gender", value: handler.handleEditGender },
-  { name: "Interests", value: "interest", disabled: true },
+  { name: "Interests", value: showInterests },
   new Separator(),
   { name: "Back ↩", value: "back" },
 ];
