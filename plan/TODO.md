@@ -107,7 +107,7 @@ User can create and manage content.
   - [x] Gender
   - [x] Bio
   - [x] DOB
-  - [ ] Interests
+  - [x] Interests : (Partially Working)
 
   ### Username & Password
   - [ ] Username
