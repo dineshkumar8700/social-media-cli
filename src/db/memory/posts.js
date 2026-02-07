@@ -23,7 +23,7 @@ export const viewPosts = (db) => {
 };
 
 export const createPost = (db, post) => {
-  const id = db.currentPostId++;
+  const id = db.counters.postId++;
 
   db.posts.push({ id, ...post });
 

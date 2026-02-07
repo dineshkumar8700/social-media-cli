@@ -17,7 +17,6 @@ export const dashboardOptions = async () => {
     message: "What's on your mind today... 👀\n",
     choices: options,
     pageSize: 10,
-    
   });
 
   return choice;

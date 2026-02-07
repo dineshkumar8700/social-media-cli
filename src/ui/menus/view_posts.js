@@ -1,23 +1,19 @@
 import { select, Separator } from "@inquirer/prompts";
 
-const separator = () => {
+const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();
   console.log("-".repeat(columns));
   console.log();
 };
 
-const formatSinglePost = (post, author) => {
+const displayPost = (post, author) => {
   const { title, description, tags } = post;
 
   console.log(`\x1b[1;32m${title}\n\x1b[0m`); // green color title
   console.log(`${description}\n`);
-  console.log(
-    `\x1b[1;37mAutor: ${author} | Tags: ${
-      tags.join(", ")
-    } | ❤️ 37 | 💬 23\x1b[0m`,
-  );
+  console.log(`Autor: ${author} | Tags: ${tags.join(", ")} | ❤️ 37 | 💬 23`);
 
-  separator();
+  drawBottomLine();
 };
 
 export const showSinglePost = (db, postId) => {
@@ -25,7 +21,7 @@ export const showSinglePost = (db, postId) => {
 
   const author = db.users.find(({ id }) => id === post.createdBy).username;
 
-  formatSinglePost(post, author);
+  displayPost(post, author);
 };
 
 export const handleSinglePost = async (db, postId) => {
@@ -33,7 +29,7 @@ export const handleSinglePost = async (db, postId) => {
     console.clear();
     showSinglePost(db, postId);
     const choice = await select({
-      message: "What next",
+      message: "What next...👀",
       choices: [
         { name: "React To Post", value: "react" },
         { name: "Comment On Post", value: "comment" },
@@ -74,10 +70,9 @@ const postMenu = (db) => {
 export const viewPosts = async (db) => {
   while (true) {
     const postId = await select({
-      message: "Select a post you want to view:",
+      message: "Select a post you want to view:\n",
       choices: postMenu(db),
       pageSize: 25,
-      
     });
 
     if (postId === "back") return;
