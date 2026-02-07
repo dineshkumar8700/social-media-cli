@@ -1,5 +1,5 @@
 import { select, Separator } from "@inquirer/prompts";
-import { viewPosts } from "../../db/memory/posts.js";
+import { viewPosts } from "./view_posts.js";
 import { profile } from "./profile.js";
 import { createPost } from "./create_post.js";
 
@@ -17,6 +17,7 @@ export const dashboardOptions = async () => {
     message: "What's on your mind today... 👀\n",
     choices: options,
     pageSize: 10,
+    
   });
 
   return choice;

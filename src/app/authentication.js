@@ -1,5 +1,4 @@
 import { addUserToDB } from "../db/memory/manage_users.js";
-import { isPasswordCorrect } from "../db/memory/validation.js";
 import { handleLogin, handleSignup } from "../ui/promts/authentication.js";
 
 export const signup = async () => {
