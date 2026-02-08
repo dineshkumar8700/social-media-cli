@@ -1,4 +1,5 @@
 import { select, Separator } from "@inquirer/prompts";
+import { addComment } from "./add_commet.js";
 
 const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();
@@ -24,7 +25,7 @@ export const showSinglePost = (db, postId) => {
   displayPost(post, author);
 };
 
-export const handleSinglePost = async (db, postId) => {
+export const handleSinglePost = async (db, user, postId) => {
   while (true) {
     console.clear();
     showSinglePost(db, postId);
@@ -32,13 +33,15 @@ export const handleSinglePost = async (db, postId) => {
       message: "What next...👀",
       choices: [
         { name: "React To Post", value: "react" },
-        { name: "Comment On Post", value: "comment" },
+        { name: "Comment On Post", value: addComment },
         new Separator(),
         { name: "Back", value: "back" },
       ],
     });
 
     if (choice === "back") return;
+
+    await choice(db, user, postId);
   }
 };
 
@@ -67,7 +70,7 @@ const postMenu = (db) => {
   return choices;
 };
 
-export const viewPosts = async (db) => {
+export const viewPosts = async (db, user) => {
   while (true) {
     const postId = await select({
       message: "Select a post you want to view:\n",
@@ -77,6 +80,6 @@ export const viewPosts = async (db) => {
 
     if (postId === "back") return;
 
-    await handleSinglePost(db, postId);
+    await handleSinglePost(db, user, postId);
   }
 };
