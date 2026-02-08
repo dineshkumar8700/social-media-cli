@@ -1,5 +1,5 @@
 import { select, Separator } from "@inquirer/prompts";
-import { addComment } from "./add_commet.js";
+import { handleAddComment, handleAddReaction } from "./reactions.js";
 
 const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();
@@ -25,18 +25,20 @@ export const showSinglePost = (db, postId) => {
   displayPost(post, author);
 };
 
+const postReactionsOptions = [
+  { name: "React To Post", value: handleAddReaction },
+  { name: "Comment On Post", value: handleAddComment },
+  new Separator(),
+  { name: "Back", value: "back" },
+];
+
 export const handleSinglePost = async (db, user, postId) => {
   while (true) {
     console.clear();
     showSinglePost(db, postId);
     const choice = await select({
       message: "What next...👀",
-      choices: [
-        { name: "React To Post", value: "react" },
-        { name: "Comment On Post", value: addComment },
-        new Separator(),
-        { name: "Back", value: "back" },
-      ],
+      choices: postReactionsOptions,
     });
 
     if (choice === "back") return;
