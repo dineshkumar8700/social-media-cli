@@ -57,7 +57,6 @@ export const reactionHandler = async (db, userId, postId, type) => {
     const choice = await getUserChoice(type);
 
     if (choice === "back") return;
-    console.log(type);
 
     type === "reaction"
       ? await handleAddReaction(db, userId, postId)

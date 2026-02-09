@@ -1,12 +1,5 @@
-import { input, select, Separator } from "@inquirer/prompts";
-import {
-  getCommentFromUser,
-  getReactionFromUser,
-  handleAddComment,
-  handleAddReaction,
-  reactionHandler,
-} from "./reactions.js";
-import { addComment, addReaction } from "../../db/memory/reactions.js";
+import { select, Separator } from "@inquirer/prompts";
+import { reactionHandler } from "./reactions.js";
 
 const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();

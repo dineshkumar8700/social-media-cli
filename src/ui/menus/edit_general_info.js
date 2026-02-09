@@ -7,7 +7,7 @@ const personDetails = [
   { name: "Add Bio", value: handler.handleAddBio },
   { name: "DOB", value: handler.handleEditDOB },
   { name: "Gender", value: handler.handleEditGender },
-  { name: "Interests", value: showInterests },
+  { name: "Interests", value: handler.handleEditInterests },
   new Separator(),
   { name: "Back ↩", value: "back" },
 ];

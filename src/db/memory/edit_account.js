@@ -33,3 +33,12 @@ export const editDOB = (db, userId, dob) => {
 
   return "✅ DOB changed successfully";
 };
+
+export const editInterests = (db, userId, interests) => {
+  const index = db.users.findIndex((user) => user.id = userId);
+
+  db.users[index].interests = interests;
+  console.log(db.users);
+
+  return "✅ Interests changed successfully";
+};
