@@ -1,10 +1,10 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import { handleCreatePost } from "../promts/create_post.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const menu = [
   { name: "Create", value: handleCreatePost },
-  new Separator(),
-  { name: "Back", value: "back" },
+  ...menuFooter(),
 ];
 
 export const createPost = async (db, user) => {

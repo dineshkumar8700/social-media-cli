@@ -1,12 +1,12 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import { editGeneralInfo } from "./edit_general_info.js";
 import { editUsernameOrPassword } from "./edit_password_username.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const options = [
   { name: "Edit General Info", value: editGeneralInfo },
   { name: "Edit Password/Username", value: editUsernameOrPassword },
-  new Separator(),
-  { name: "Back ↩", value: "back" },
+  ...menuFooter(),
 ];
 
 export const settings = async (db, user) => {

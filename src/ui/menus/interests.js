@@ -1,5 +1,6 @@
 //deno-lint-ignore-file
-import { input, select, Separator } from "@inquirer/prompts";
+import { input, select } from "@inquirer/prompts";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const getUserInterests = (db, userId) => {
   const index = db.users.findIndex((user) => user.id === userId);
@@ -22,8 +23,7 @@ const accessInterest = async (db, userId, interest) => {
     choices: [
       { name: "Edit", value: "editInterest" },
       { name: "Delete", value: "deleteInterest" },
-      new Separator(),
-      { name: "Back", value: "back" },
+      ...menuFooter(),
     ],
   });
 };
@@ -33,8 +33,7 @@ const selectInterest = async (interests) => {
     message: "Select interest you want to access:\n",
     choices: [
       ...interests.map((name) => ({ name, value: name })),
-      new Separator(),
-      { name: "Back", value: "back" },
+      ...menuFooter(),
     ],
   });
 

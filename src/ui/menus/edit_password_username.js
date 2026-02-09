@@ -1,10 +1,10 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const options = [
   { name: "Change Username", value: "changeUsername" },
   { name: "Change Password", value: "changePassword" },
-  new Separator(),
-  { name: "Back ↩", value: "back" },
+  ...menuFooter(),
 ];
 
 export const editUsernameOrPassword = async (db, user) => {

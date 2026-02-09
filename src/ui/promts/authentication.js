@@ -1,6 +1,7 @@
-import { input, select, Separator } from "@inquirer/prompts";
+import { input, select } from "@inquirer/prompts";
 import * as validation from "../../db/memory/validation.js";
 import { addUserToDB, getUserId } from "../../db/memory/manage_users.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const getUsername = async (message, validator) => {
   const username = await input({
@@ -61,8 +62,7 @@ export const handleLogin = async () => {
 const authenticationChoices = [
   { name: "Login", value: handleLogin, description: "For existing user" },
   { name: "Signup", value: handleSignup, description: "For new user" },
-  new Separator(),
-  { name: "Exit", value: "exit", description: "Leave the app" },
+  ...menuFooter("Exit"),
 ];
 
 export const authentication = async () => {

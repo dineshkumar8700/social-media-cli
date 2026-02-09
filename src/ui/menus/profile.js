@@ -1,15 +1,15 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import { settings } from "./settings.js";
 import { createPost } from "./create_post.js";
 import { viewPosts } from "./view_posts.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const options = [
   { name: "View My Posts", value: viewPosts },
   { name: "Create New Post", value: createPost },
   { name: "Find Friend", value: "findFriend", disabled: true },
   { name: "Settings", value: settings },
-  new Separator(),
-  { name: "Back ↩", value: "back" },
+  ...menuFooter(),
 ];
 
 export const profile = async (db, user) => {

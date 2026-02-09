@@ -10,7 +10,7 @@ export const dashboard = async (DB, user) => {
 
   while (true) {
     const choice = await dashboardOptions();
-    if (choice === "logout") return;
+    if (choice === "back") return;
 
     console.clear();
     await choice(DB, user);

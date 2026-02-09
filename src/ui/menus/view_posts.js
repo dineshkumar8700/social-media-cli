@@ -1,5 +1,6 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import { reactionHandler } from "./reactions.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();
@@ -28,8 +29,7 @@ export const showSinglePost = (db, postId) => {
 const postReactions = [
   { name: "React To Post", value: "reaction" },
   { name: "Comment On Post", value: "comment" },
-  new Separator(),
-  { name: "Back", value: "back" },
+  ...menuFooter(),
 ];
 
 export const handleSinglePost = async (db, userId, postId) => {
@@ -66,8 +66,7 @@ const postOptions = (db) => {
   const posts = getPosts(db);
   const choices = [
     ...posts,
-    new Separator(),
-    { name: "Back", value: "back" },
+    ...menuFooter(),
   ];
 
   return choices;

@@ -1,5 +1,6 @@
-import { input, select, Separator } from "@inquirer/prompts";
+import { input, select } from "@inquirer/prompts";
 import { addComment, addReaction } from "../../db/memory/reactions.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 export const getCommentFromUser = async () => {
   const text = await input({
@@ -16,8 +17,7 @@ export const getReactionFromUser = async () => {
     choices: [
       { name: "Like ❤️", value: "like" },
       { name: "Dislike 👎", value: "dislike" },
-      new Separator(),
-      { name: "Back", value: "back" },
+      ...menuFooter(),
     ],
     required: true,
   });
@@ -30,8 +30,7 @@ const getUserChoice = async (type) => {
     message: "Choose one option:",
     choices: [
       { name: `Add ${type}`, value: "add" },
-      new Separator(),
-      { name: "Back", value: "back" },
+      ...menuFooter(),
     ],
   });
 

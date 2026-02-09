@@ -1,6 +1,6 @@
-import { select, Separator } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import * as handler from "../promts/settings.js";
-import { showInterests } from "./interests.js";
+import { menuFooter } from "../../utils/menu_footer.js";
 
 const personDetails = [
   { name: "Name", value: handler.handleEditName },
@@ -8,8 +8,7 @@ const personDetails = [
   { name: "DOB", value: handler.handleEditDOB },
   { name: "Gender", value: handler.handleEditGender },
   { name: "Interests", value: handler.handleEditInterests },
-  new Separator(),
-  { name: "Back ↩", value: "back" },
+  ...menuFooter(),
 ];
 
 export const editGeneralInfo = async (db, user) => {
