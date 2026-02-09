@@ -1,7 +1,7 @@
 import { select, Separator } from "@inquirer/prompts";
-import { viewPosts } from "../../db/memory/posts.js";
 import { settings } from "./settings.js";
 import { createPost } from "./create_post.js";
+import { viewPosts } from "./view_posts.js";
 
 const options = [
   { name: "View My Posts", value: viewPosts },

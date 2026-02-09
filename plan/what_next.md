@@ -16,3 +16,18 @@ Author: <username> | 👍 <likeCount> | 👎 <dislikeCount>
 → View Post
 → React To Post
 ```
+
+## what I finished last
+
+- user can add comment and reaction to the post
+
+## Dynamically show the post reactions and comments in post meta data
+
+- comments and reactions count to be feched from db in real time
+- remove static comment and like
+
+## Adds feature to edit username and password
+
+## completes interest feature
+
+## **MOST IMPORTANT** : Refactor code

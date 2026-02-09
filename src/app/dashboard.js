@@ -13,10 +13,6 @@ export const dashboard = async (DB, user) => {
     if (choice === "logout") return;
 
     console.clear();
-    const result = await choice(DB, user);
-
-    if (result) {
-      console.table(result);
-    }
+    await choice(DB, user);
   }
 };

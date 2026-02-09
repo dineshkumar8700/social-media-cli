@@ -1,30 +1,21 @@
 import { input } from "@inquirer/prompts";
 import { createPost } from "../../db/memory/posts.js";
 
-const validatePostInfo = (text, name, length) => {
+const validatePostDetail = (text, name, minChar) => {
   if (!text.trim()) return `${name} cannot be empty`;
 
-  if (text.trim().length < length) {
-    return `${name} must be at least ${length} characters`;
+  if (text.trim().length < minChar) {
+    return `${name} must be at least ${minChar} characters`;
   }
 };
 
-const getPostTitle = async () => {
-  const title = (await input({
-    message: "Enter post title:",
-    validate: (title) => validatePostInfo(title, "title", 3) || true,
+const getPostDetail = async (name, minChar) => {
+  const detail = (await input({
+    message: `Enter post ${name}:`,
+    validate: (value) => validatePostDetail(value, name, minChar) || true,
   })).trim();
 
-  return title;
-};
-
-const getPostDescription = async () => {
-  const description = (await input({
-    message: "Enter post title:",
-    validate: (desc) => validatePostInfo(desc, "description", 10) || true,
-  })).trim();
-
-  return description;
+  return detail;
 };
 
 const getTags = async () => {
@@ -38,8 +29,8 @@ const getTags = async () => {
 };
 
 export const handleCreatePost = async (db, user) => {
-  const title = await getPostTitle();
-  const description = await getPostDescription();
+  const title = await getPostDetail("title", 3);
+  const description = await getPostDetail("description", 10);
   const tags = await getTags();
 
   const post = { createdBy: user.id, title, description, tags };

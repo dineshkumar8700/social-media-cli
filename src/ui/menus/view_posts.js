@@ -1,5 +1,12 @@
-import { select, Separator } from "@inquirer/prompts";
-import { handleAddComment, handleAddReaction } from "./reactions.js";
+import { input, select, Separator } from "@inquirer/prompts";
+import {
+  getCommentFromUser,
+  getReactionFromUser,
+  handleAddComment,
+  handleAddReaction,
+  reactionHandler,
+} from "./reactions.js";
+import { addComment, addReaction } from "../../db/memory/reactions.js";
 
 const drawBottomLine = () => {
   const { columns } = Deno.consoleSize();
@@ -25,43 +32,44 @@ export const showSinglePost = (db, postId) => {
   displayPost(post, author);
 };
 
-const postReactionsOptions = [
-  { name: "React To Post", value: handleAddReaction },
-  { name: "Comment On Post", value: handleAddComment },
+const postReactions = [
+  { name: "React To Post", value: "reaction" },
+  { name: "Comment On Post", value: "comment" },
   new Separator(),
   { name: "Back", value: "back" },
 ];
 
-export const handleSinglePost = async (db, user, postId) => {
+export const handleSinglePost = async (db, userId, postId) => {
   while (true) {
     console.clear();
     showSinglePost(db, postId);
-    const choice = await select({
+    const type = await select({
       message: "What next...👀",
-      choices: postReactionsOptions,
+      choices: postReactions,
     });
 
-    if (choice === "back") return;
+    if (type === "back") return;
 
-    await choice(db, user, postId);
+    await reactionHandler(db, userId, postId, type);
   }
 };
 
-const getPosts = (db) => {
-  const posts = [];
+const formatPost = (title, author, likes) => {
+  return `${title}\n  -Posted By: ${author} | ❤️: ${likes}\n`;
+};
 
-  db.posts.forEach((post) => {
+const getPosts = (db) => {
+  const posts = db.posts.map((post) => {
     const author = db.users.find(({ id }) => id === post.createdBy).username;
-    posts.push({
-      name: `${post.title}\n  -Posted By: ${author} | ❤️: 10\n`,
-      value: post.id,
-    });
+    const header = formatPost(post.title, author, 10);
+
+    return { name: header, value: post.id };
   });
 
   return posts;
 };
 
-const postMenu = (db) => {
+const postOptions = (db) => {
   const posts = getPosts(db);
   const choices = [
     ...posts,
@@ -76,12 +84,12 @@ export const viewPosts = async (db, user) => {
   while (true) {
     const postId = await select({
       message: "Select a post you want to view:\n",
-      choices: postMenu(db),
+      choices: postOptions(db),
       pageSize: 25,
     });
 
     if (postId === "back") return;
 
-    await handleSinglePost(db, user, postId);
+    await handleSinglePost(db, user.id, postId);
   }
 };
